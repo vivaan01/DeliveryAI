@@ -17,10 +17,15 @@ app.use(express.json());
 // Enable CORS
 app.use(cors());
 
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/orders', require('./routes/orders'));
-app.use('/api/twilio', require('./routes/twilio'));
+// Define routes
+const authRoutes = require('./routes/auth');
+const orderRoutes = require('./routes/orders');
+const twilioRoutes = require('./routes/twilio');
+
+// Mount routers
+app.use('/api/auth', authRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/twilio', twilioRoutes);
 
 app.get('/', (req, res) => {
     res.send('DeliveryAI API is running...');
